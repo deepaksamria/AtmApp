@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base_user::layout(~{::section})">
+    <head>
+        <meta charset="UTF-8">
+        <title>Hello World</title>
+    </head>
+    <body>
+      <section>
+	
+	<h3 align="center">Transaction History</h3>
+	<h4>Card Holder : <span th:text="${user.name}" /></h4>
+	<h4>Card No: <span th:text="${card.no}" /> and Bank Name: <span th:text="${card.bank}" /></h4>
+      <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Date</th>
+      <th scope="col">Particulars</th>
+      <th scope="col">Debit</th>
+      <th scope="col">Credit</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:if="${st.empty}">
+            <td colspan="2"> No transactions yet!!!! </td>
+        </tr>
+    <tr th:each="stv : ${st}">
+      <td th:text="${stv.date}" />
+      <td th:text="${stv.particulars}" />
+      <td th:text="${stv.dr}" />
+      <td th:text="${stv.cr}" />
+    </tr>
+  </tbody>
+</table>
+     
+	
+	
+		</section>
+    </body>
+</html>

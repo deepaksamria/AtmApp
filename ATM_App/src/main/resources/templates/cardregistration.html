@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base_user::layout(~{::section})">
+    <head>
+        <meta charset="UTF-8">
+        <title>Hello World</title>
+    </head>
+    <body>
+      <section>
+     <div style="background-color: white;"class="col-md-8 offset-md-2">
+
+			<div th:if="${session.message}" class="alert alert-primary" role="alert"><p th:text="${session.message}" />
+			<th:block th:text="${#session.removeAttribute('message')}"></th:block>			
+			</div>
+			<h2 align="center" style="color:dark-brown">REGISTER YOU CARD</h2>
+     <form action="" th:action="@{/cr_process}" method="post" th:object="${card}">
+			<div class="mb-1">
+				<label for="exampleInputEmail1" class="form-label">CARD NO</label> <input type="number" name="no" 
+				class="form-control" placeholder="Card no should be in 4 digit">
+				<p th:each="e : ${#fields.errors('no')}" th:text="${e}"/>
+				<div id="emailHelp" class="form-text"></div>
+			</div>
+			<div class="mb-1">
+				<label for="exampleInputEmail1" class="form-label">BANK NAME</label> <input type="name" name="bank" class="form-control">
+				<p th:each="e : ${#fields.errors('bank')}" th:text="${e}"/><div id="emailHelp" class="form-text"></div>
+			</div>
+		<button type="submit" class="btn btn-primary">REGISTER CARD</button>
+
+		</form>
+        </div> 
+      </section>
+    </body>
+</html>
+
+
+
+
+

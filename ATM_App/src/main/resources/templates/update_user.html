@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base_user::layout(~{::section})">
+    <head>
+        <meta charset="UTF-8">
+        <title>Hello World</title>
+    </head>
+    <body>
+      <section>
+      <div style="background-color: white;"class="col-md-8 offset-md-2">
+
+			<div th:if="${session.message}" class="alert alert-primary" role="alert"><p th:text="${session.message}" />
+			<th:block th:text="${#session.removeAttribute('message')}"></th:block>			
+			</div>
+			<h2 align="center" style="color:dark-brown">UPDATE MY PROFLE</h2>
+     <form action="" th:action="@{/updateuserprofile}" method="post" th:object="${user}">
+			<div class="mb-1">
+				<label for="exampleInputEmail1" class="form-label">NAME</label> <input type="name" name="name" 
+				class="form-control" th:value="${user.name}" >
+				<p th:each="e : ${#fields.errors('name')}" th:text="${e}"/>
+				<div id="emailHelp" class="form-text"></div>
+			</div>
+			<div class="mb-1">
+				<label for="exampleInputEmail1" class="form-label">PASSOWRD</label> <input type="password" name="pass" class="form-control" >
+				<p th:each="e : ${#fields.errors('pass')}" th:text="${e}"/><div id="emailHelp" class="form-text"></div>
+			</div>
+			
+			<div class="mb-1">
+				<label for="exampleInputEmail1" class="form-label">MOBILE NO</label> <input type="name" name="mob" class="form-control" th:value="${user.mob}" >
+				<p th:each="e : ${#fields.errors('mob')}" th:text="${e}"/><div id="emailHelp" class="form-text"></div>
+			</div>
+			<div class="mb-1">
+				<label for="exampleInputEmail1" class="form-label">CITY</label> <input type="name" name="city" class="form-control"  th:value="${user.city}" >
+				<p th:each="e : ${#fields.errors('city')}" th:text="${e}"/><div id="emailHelp" class="form-text"></div>
+			</div>
+		<button type="submit" class="btn btn-primary">UPDATE PROFILE</button>
+
+		</form>
+      </section>
+    </body>
+</html>

@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org" th:replace="base_user::layout(~{::section})">
+    <head>
+        <meta charset="UTF-8">
+        <title>Hello World</title>
+    </head>
+    <body>
+      <section>
+      <h3 align="center">List of your card</h3>
+      <table class="table">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Card No.</th>
+      <th scope="col">Bank Name</th>
+      <th scope="col">Balance</th>
+      <th scope="col">Status</th>
+      <th scope="col">Add Money to card</th>
+      <th scope="col">With-draw Money from Card</th>
+      <th scope="col">Transfer money to other Card</th>
+      <th scope="col">View Transaction History</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr th:if="${userCard.empty}">
+            <td colspan="2"> No card registered!!!! </td>
+        </tr>
+    <tr th:each="ucard : ${userCard}">
+      <td th:text="${ucard.no}" />
+      <td th:text="${ucard.bank}" />
+      <td th:text="${ucard.bal}" />
+      <td th:text="${ucard.isActive}" />
+        <td>
+        <a th:href="@{'/addMoney/'+${ucard.no}}"><button type="button" class="btn btn-secondary">Add</button></a>
+        </td>
+        <td>
+        <a th:href="@{'/withdrawMoney/'+${ucard.no}}"><button type="button" class="btn btn-secondary">With-Draw</button></a>
+        </td>
+      <td>
+      <a th:href="@{'/transferMoney/'+${ucard.no}}"><button type="button" class="btn btn-secondary">Transfer</button></a>
+      </td>
+      <td>
+      <a th:href="@{'/transactionHistory/'+${ucard.no}}"><button type="button" class="btn btn-secondary">Transaction History</button>
+      </td>
+    </tr>
+  </tbody>
+</table>
+     
+
+
+      </section>
+    </body>
+</html>
+      
